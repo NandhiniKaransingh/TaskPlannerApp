@@ -1,0 +1,54 @@
+  <div class="calendar">
+    <div class="calendar-header">
+      
+      <h3>{{ (selectedMonth | date: 'MMMM') }}</h3>
+      <button (click)="goToPreviousMonth()">Previous</button>
+      <button (click)="goToNextMonth()">Next</button>
+    </div>
+    
+    <div class="calendar-grid">
+        <div *ngFor="let day of daysOfWeek" class="day-header">
+            {{ day }}
+          </div>
+      <div *ngFor="let day of daysInMonth" class="day-cell calendar-grid-cells" [ngClass]="{'empty': !day.date, 'today': isToday(day.date)}"(click)="openDialog(day)">
+        <div class="date">{{ day.date ? day.date.getDate() : '' }}</div>
+        <div *ngFor="let task of day.tasks" class="task" (click)="openDialog(day, task.id); $event.stopPropagation()">
+          {{ task.title }} | {{ task.priority }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Task Dialog -->
+  <p-dialog [(visible)]="displayDialog" modal="true" header="Task Details" [closable]="false" [dismissableMask]="true"
+    [style]="{'width':'450px', 'min-width':'300px'}" contentStyleClass="custom-dialog-content" styleClass="custom-dialog">
+    
+    <form [formGroup]="taskForm">
+      <div class="ui-g-12 display-class">
+        <label for="taskTitle">Task Name</label>
+        <input class="margin-class" id="taskTitle" placeholder="Enter Task Name" style="width: 78%;" formControlName="title" type="text" pInputText />
+      </div>
+      <div class="ui-g-12 display-class">
+        <label for="taskDescription">Description</label>
+        <textarea class="margin-class" placeholder="Enter Task Description" id="taskDescription" rows="3"
+        formControlName="description"></textarea>
+      </div>
+      <div class="ui-g-12 display-class">
+        <label for="taskDate">Task Date</label>
+        <input id="taskDate" class="margin-class" style="width: 78%;margin-left: 16px;" type="text" pInputText
+        formControlName="date" />
+      </div>
+      <div class="ui-g-12 display-class">
+        <label for="taskPriority">Priority</label>
+        <p-dropdown formControlName="priority" [options]="priorityOptions"></p-dropdown>
+      </div>
+    </form>
+    <p-footer>
+      <div style="margin-bottom: 8px;">
+        <button class="footer-btn-class primary-btn" (click)="saveTask()">Save</button>
+        <button class="footer-btn-class primary-btn" (click)="deleteTask()" *ngIf="selectedTaskId !== null">Delete</button>
+        <button class="footer-btn-class secondary-btn" (click)="closeDialog()">Cancel</button>
+      </div>
+    </p-footer>
+  </p-dialog>
+  

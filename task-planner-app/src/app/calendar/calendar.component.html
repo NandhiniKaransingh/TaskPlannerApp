@@ -1,0 +1,53 @@
+<!-- Loader Section -->
+<div *ngIf="loading" class="loader-container">
+    <div class="loader"></div>
+    <p>Loading calendar...</p>
+</div>
+
+
+<div class="custom-calendar" *ngIf="!loading">
+    <div class="calendar-header">
+        <label>Calendar</label>
+    </div>
+    <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+
+
+<p-dialog [(visible)]="showTaskModal" modal="true" header="Task Details" [closable]="false" [dismissableMask]="true"
+    [style]="{'width':'450px', 'min-width':'300px'}" contentStyleClass="custom-dialog-content"
+    styleClass="custom-dialog">
+    
+    <div class="ui-g-12 display-class">
+        <label for="taskName">Task Name</label>
+        <input id="taskName" class="margin-class" placeholder="Enter Task Name" style="width: 78%;" type="text"
+            pInputText [(ngModel)]="task.name" />
+    </div>
+    <div class="ui-g-12 display-class">
+        <label for="taskDescription">Description</label>
+        <textarea class="margin-class" placeholder="Enter Task Description" id="taskDescription" rows="3"
+            [(ngModel)]="task.description"></textarea>
+    </div>
+
+    <div class="ui-g-12 display-class">
+        <label for="taskDate">Task Date</label>
+        <input id="taskDate" class="margin-class" style="width: 78%;margin-left: 16px;" type="text" pInputText
+            [(ngModel)]="task.date" disabled />
+    </div>
+
+    <div class="ui-g-12 display-class">
+        <label for="taskPriority">Priority</label>
+        <p-dropdown id="taskPriority" [options]="priorityOptions" [(ngModel)]="task.priority" class="ui-column-filter"
+            [appendTo]="'body'" [placeholder]="'Select Priority'">
+        </p-dropdown>
+    </div>
+
+    <p-footer>
+        <div class="" style="margin-bottom: 8px;">
+            <button class="footer-btn-class primary-btn" [disabled]="task.name.length == 0" (click)="saveTask()">Save</button>
+            <button class="footer-btn-class primary-btn" *ngIf="task.id > 0"
+                (click)="deleteTask(task.id)">Delete</button>
+            <button class="footer-btn-class secondary-btn" (click)="closeDialog()">Cancel</button>
+        </div>
+
+    </p-footer>
+</p-dialog>

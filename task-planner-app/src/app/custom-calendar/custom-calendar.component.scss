@@ -1,0 +1,75 @@
+.calendar {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    background-color: #255ab5;
+    color: white;
+  }
+
+  .day-cell {
+    cursor: pointer; /* Change cursor to pointer on hover */
+    position: relative; /* Position for the hover effect */
+  }
+  
+  .day-cell.today {
+    background-color: #beceeb; /* Highlight today's date */
+    font-weight: bold; /* Make today's date bold */
+  }
+  
+  .day-cell:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+  }
+  
+  .day-header {
+    padding: 5px;
+    font-weight: bold;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 100px;
+    border: 1px solid #ccc;
+  }
+  
+  .day-cell {
+    border: 1px solid #ddd;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .day-cell:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .empty {
+    background-color: #eaeaea;
+  }
+  
+  .date {
+    font-weight: bold;
+  }
+  
+  .task {
+    background-color: #255ab5;
+    color: white;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 4px;
+  }
+
+  .display-class {
+    display: flex;
+  }
+
+  .margin-class {
+    margin-left: 8px;
+    margin-bottom: 8px;
+  }
+  
