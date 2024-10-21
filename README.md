@@ -1,6 +1,6 @@
 # TaskPlannerApp
 
-askPlanner is a web-based application that allows users to manage tasks with an integrated calendar view. It offers functionalities like adding, updating, deleting tasks, and drag-and-drop support for rescheduling tasks on the calendar.
+TaskPlanner is a web-based application that allows users to manage tasks with an integrated calendar view. It offers functionalities like adding, updating, deleting tasks, and drag-and-drop support for rescheduling tasks on the calendar.
 
 Features
 Interactive Calendar with task management
