@@ -14,12 +14,12 @@
 
 
 <p-dialog [(visible)]="showTaskModal" modal="true" header="Task Details" [closable]="false" [dismissableMask]="true"
-    [style]="{'width':'450px', 'min-width':'300px'}" contentStyleClass="custom-dialog-content"
+    [style]="{'width':'560px', 'min-width':'300px'}" contentStyleClass="custom-dialog-content"
     styleClass="custom-dialog">
     
     <div class="ui-g-12 display-class">
         <label for="taskName">Task Name</label>
-        <input id="taskName" class="margin-class" placeholder="Enter Task Name" style="width: 78%;" type="text"
+        <input id="taskName" class="margin-class" placeholder="Enter Task Name" style="width: 82%;" type="text"
             pInputText [(ngModel)]="task.name" />
     </div>
     <div class="ui-g-12 display-class">
@@ -30,7 +30,7 @@
 
     <div class="ui-g-12 display-class">
         <label for="taskDate">Task Date</label>
-        <input id="taskDate" class="margin-class" style="width: 78%;margin-left: 16px;" type="text" pInputText
+        <input id="taskDate" class="margin-class" style="width: 82%;margin-left: 16px;" type="text" pInputText
             [(ngModel)]="task.date" disabled />
     </div>
 

@@ -1,8 +1,7 @@
 .calendar {
-    display: flex;
-    flex-direction: column;
-  }
-  
+  display: flex;
+  flex-direction: column;
+
   .calendar-header {
     display: flex;
     text-align: center;
@@ -10,81 +9,102 @@
     color: white;
   }
 
-  .day-cell {
-    cursor: pointer; /* Change cursor to pointer on hover */
-    position: relative; /* Position for the hover effect */
-  }
-  
-  .day-cell.today {
-    background-color: #beceeb; /* Highlight today's date */
-    font-weight: bold; /* Make today's date bold */
-  }
-  
-  .day-cell:hover {
-    background-color: #f0f0f0; /* Light gray background on hover */
-  }
-  
-  
   .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 columns, one for each day of the week */
+    grid-template-columns: repeat(7,
+        1fr);
     grid-gap: 5px;
     padding: 10px;
+
+    .day-header {
+      background-color: #255ab5;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .day-cell {
+      position: relative;
+      min-height: 95px;
+      border: 1px solid #ddd;
+      text-align: left;
+      padding: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      .empty {
+        background-color: #eaeaea;
+      }
+
+      .date {
+        font-weight: bold;
+      }
+    }
+
+    .day-cell:hover {
+      background-color: #f0f0f0;
+    }
+
+    .day-cell.today {
+      background-color: #beceeb;
+      font-weight: bold;
+    }
   }
-  .day-header {
-    background-color: #255ab5;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-weight: bold;
-  }  
-  
-  .day-cell {
-    position: relative;
-    min-height: 95px;
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+}
+
+.task {
+  background-color: #255ab5;
+  color: white;
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+.display-class {
+  display: flex;
+}
+
+.margin-class {
+  margin-left: 8px;
+  margin-bottom: 8px;
+}
+
+.btn-class {
+  width: 100%;
+  position: relative;
+  margin-top: 15px;
+  /* float: left; */
+  left: 563px;
+  top: -6px;
+}
+
+/* Loader CSS */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
   }
-  
-  .day-cell:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .empty {
-    background-color: #eaeaea;
-  }
-  
-  .date {
-    font-weight: bold;
-  }
-  
-  .task {
-    background-color: #255ab5;
-    color: white;
-    padding: 5px;
-    margin: 5px 0;
-    border-radius: 4px;
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
 
-  .display-class {
-    display: flex;
+  100% {
+    transform: rotate(360deg);
   }
-
-  .margin-class {
-    margin-left: 8px;
-    margin-bottom: 8px;
-  }
-
-  .btn-class {
-    width: 100%;
-    position: relative;
-    margin-top: 15px;
-    /* float: left; */
-    left: 563px;
-    top: -6px;
-  }
-  
+}

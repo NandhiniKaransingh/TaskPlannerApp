@@ -28,6 +28,7 @@ export class CustomCalendarComponent {
   selectedDay: any = null;
   selectedTaskId: number | null = null; 
   currentDate: Date = new Date();
+  loading: boolean = true; 
 
   // Priority dropdown options
   priorityOptions = [
@@ -49,10 +50,13 @@ export class CustomCalendarComponent {
   }
 
   ngOnInit() {
-    this.generateDaysInMonth();
-    this.setSelectedDay();
-    console.log(this.currentDate)
-    this.selectedMonth = this.currentDate
+    setTimeout(() => {
+      this.generateDaysInMonth();
+      this.setSelectedDay();
+      this.selectedMonth = this.currentDate;
+      this.loading = false;
+    }, 2000)
+   
   }
 
   isToday(date: Date): boolean {
