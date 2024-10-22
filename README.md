@@ -52,6 +52,7 @@ Implementation:
 4. Drag-and-Drop: FullCalendar's built-in drag-and-drop feature was enabled to allow users to move tasks between dates visually.
 Customizations
 5. Task Dialog: Similar to the custom component, PrimeNG's p-dialog was used for the task creation and editing modal.
+6. To use FullCalendar component, route to http://localhost:4200/calendar
 
 Technologies Used:
 
