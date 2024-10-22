@@ -1,9 +1,12 @@
   <div class="calendar">
     <div class="calendar-header">
       
-      <h3>{{ (selectedMonth | date: 'MMMM') }}</h3>
-      <button (click)="goToPreviousMonth()">Previous</button>
-      <button (click)="goToNextMonth()">Next</button>
+      <label style="font-size: 26px;margin-top: 13px;min-width: 200px;">{{ (selectedMonth | date: 'MMMM') }}</label>
+      <span class="btn-class">
+        <button class="footer-btn-class secondary-month-btn" style="margin-right: 10px;" (click)="goToPreviousMonth()">Previous</button>
+        <button class="footer-btn-class secondary-month-btn" (click)="goToNextMonth()">Next</button>
+      </span>
+      
     </div>
     
     <div class="calendar-grid">
@@ -21,12 +24,16 @@
   
   <!-- Task Dialog -->
   <p-dialog [(visible)]="displayDialog" modal="true" header="Task Details" [closable]="false" [dismissableMask]="true"
-    [style]="{'width':'450px', 'min-width':'300px'}" contentStyleClass="custom-dialog-content" styleClass="custom-dialog">
+    [style]="{'width':'560px', 'min-width':'300px'}" contentStyleClass="custom-dialog-content" styleClass="custom-dialog">
     
     <form [formGroup]="taskForm">
       <div class="ui-g-12 display-class">
         <label for="taskTitle">Task Name</label>
-        <input class="margin-class" id="taskTitle" placeholder="Enter Task Name" style="width: 78%;" formControlName="title" type="text" pInputText />
+        <input class="margin-class" id="taskTitle" placeholder="Enter Task Name" style="width: 82%;" formControlName="title" type="text" />
+        
+      </div>
+      <div *ngIf="taskForm.get('title').invalid && taskForm.get('title').touched" class="error-message">
+        Task Name is required.
       </div>
       <div class="ui-g-12 display-class">
         <label for="taskDescription">Description</label>
@@ -35,17 +42,20 @@
       </div>
       <div class="ui-g-12 display-class">
         <label for="taskDate">Task Date</label>
-        <input id="taskDate" class="margin-class" style="width: 78%;margin-left: 16px;" type="text" pInputText
-        formControlName="date" />
+        <input id="taskDate" class="margin-class" style="width: 82%;margin-left: 16px;" type="text"
+        formControlName="date" readonly />
       </div>
       <div class="ui-g-12 display-class">
         <label for="taskPriority">Priority</label>
-        <p-dropdown formControlName="priority" [options]="priorityOptions"></p-dropdown>
+        <p-dropdown formControlName="priority" [options]="priorityOptions" [placeholder]="'Select Priority'" [appendTo]="'body'"></p-dropdown>
+      </div>
+      <div *ngIf="taskForm.get('priority').invalid && taskForm.get('priority').touched" class="error-message">
+        Priority is required.
       </div>
     </form>
     <p-footer>
       <div style="margin-bottom: 8px;">
-        <button class="footer-btn-class primary-btn" (click)="saveTask()">Save</button>
+        <button class="footer-btn-class primary-btn" (click)="saveTask()" [disabled]="taskForm.invalid">Save</button>
         <button class="footer-btn-class primary-btn" (click)="deleteTask()" *ngIf="selectedTaskId !== null">Delete</button>
         <button class="footer-btn-class secondary-btn" (click)="closeDialog()">Cancel</button>
       </div>

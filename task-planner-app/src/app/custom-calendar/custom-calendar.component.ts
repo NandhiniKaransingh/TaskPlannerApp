@@ -42,8 +42,9 @@ export class CustomCalendarComponent {
   ) {
     this.taskForm = this.fb.group({
       title: ['', Validators.required],
-      description: ['', Validators.required],
-      priority: ['', Validators.required]
+      description: [''],
+      priority: ['', Validators.required],
+      date: ['']
     });
   }
 
@@ -83,17 +84,21 @@ export class CustomCalendarComponent {
 
   openDialog(day, taskId: number | null = null) {
     if (!day.date) return;
+    
     this.displayDialog = true;
     this.selectedDay = day;
+    
     this.taskForm.reset();
     this.taskForm.patchValue({
-      date: day.date,
+      date: this.formatDate(day.date), // Display formatted date in the disabled input field
       title: taskId !== null ? day.tasks.find(t => t.id === taskId)?.title : '',
       description: taskId !== null ? day.tasks.find(t => t.id === taskId)?.description : '',
       priority: taskId !== null ? day.tasks.find(t => t.id === taskId)?.priority : '',
     });
+    
     this.selectedTaskId = taskId;
   }
+  
 
   saveTask() {
     const newTask = {
