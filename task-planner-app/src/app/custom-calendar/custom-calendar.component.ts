@@ -7,6 +7,7 @@ interface Task {
   title: string;
   description: string;
   priority: string;
+  status: string;
 }
 
 interface Day {
@@ -36,6 +37,14 @@ export class CustomCalendarComponent {
     { label: 'Medium', value: 'MEDIUM' },
     { label: 'High', value: 'HIGH' }
   ];
+
+   // Priority dropdown options
+   statusOptions = [
+    { label: 'To DO', value: 'To DO' },
+    { label: 'In Progress', value: 'In Progress' },
+    { label: 'Done', value: 'Done' }
+  ];
+  
   selectedMonth: Date | number;
 
   constructor(private fb: FormBuilder,
@@ -45,7 +54,8 @@ export class CustomCalendarComponent {
       title: ['', Validators.required],
       description: [''],
       priority: ['', Validators.required],
-      date: ['']
+      date: [''],
+      status: ['', Validators.required]
     });
   }
 
@@ -98,6 +108,7 @@ export class CustomCalendarComponent {
       title: taskId !== null ? day.tasks.find(t => t.id === taskId)?.title : '',
       description: taskId !== null ? day.tasks.find(t => t.id === taskId)?.description : '',
       priority: taskId !== null ? day.tasks.find(t => t.id === taskId)?.priority : '',
+      status: taskId !== null ? day.tasks.find(t => t.id === taskId)?.status : '',
     });
     
     this.selectedTaskId = taskId;
@@ -110,6 +121,7 @@ export class CustomCalendarComponent {
       title: this.taskForm.value.title,
       description: this.taskForm.value.description,
       priority: this.taskForm.value.priority,
+      status: this.taskForm.value.status,
     };
 
     if (this.selectedTaskId !== null) {

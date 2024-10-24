@@ -1,10 +1,10 @@
 <!-- Loader Section -->
 <div *ngIf="loading" class="loader-container">
     <div class="loader"></div>
-    <p>Loading calendar...</p>
+    <!-- <p>Loading calendar...</p> -->
 </div>
 
-<div class="calendar" *ngIf="!loading" >
+<div class="calendar" *ngIf="!loading">
     <div class="calendar-header">
 
         <label style="font-size: 26px;margin-top: 13px;min-width: 200px;">{{ (selectedMonth | date: 'MMMM') }}</label>
@@ -25,7 +25,7 @@
             <div class="date">{{ day.date ? day.date.getDate() : '' }}</div>
             <div *ngFor="let task of day.tasks" class="task"
                 (click)="openDialog(day, task.id); $event.stopPropagation()">
-                {{ task.title }} | {{ task.priority }}
+                {{ task.title }} | {{ task.priority }} | {{ task.status }}
             </div>
         </div>
     </div>
@@ -61,8 +61,22 @@
             <p-dropdown formControlName="priority" [options]="priorityOptions" [placeholder]="'Select Priority'"
                 [appendTo]="'body'"></p-dropdown>
         </div>
-        <div *ngIf="taskForm.get('priority').invalid && taskForm.get('priority').touched" class="error-message">
+        <div *ngIf="taskForm.get('priority').invalid && taskForm.get('priority').touched" class="error-message" style="margin-top: 2px;
+    margin-left: 83px;">
             Priority is required.
+        </div>
+
+        <div class="ui-g-12 display-class status-class">
+            <label for="taskStatus">Status</label>
+            <div style="margin-left: 5px;">
+                <p-dropdown formControlName="status" [options]="statusOptions" [placeholder]="'Select Status'"
+                    [appendTo]="'body'"></p-dropdown>
+            </div>
+
+        </div>
+        <div *ngIf="taskForm.get('status').invalid && taskForm.get('status').touched" class="error-message" style="margin-top: 2px;
+    margin-left: 83px;">
+            Status is required.
         </div>
     </form>
     <p-footer>
